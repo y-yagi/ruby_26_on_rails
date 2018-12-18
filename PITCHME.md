@@ -20,7 +20,7 @@ Ruby 2.6に向けて、Railsでも色々な対応が行われました(& 行わ�
 
 BigDecimal関連
 
-https://travis-ci.org/rails/rails/jobs/468295192#L2578-L2581
+https://travis-ci.org/rails/rails/jobs/469320845#L2562-L2564
 
 ---
 
@@ -49,11 +49,23 @@ https://travis-ci.org/rails/rails/jobs/468295192#L2578-L2581
 
 ---
 
-### それ以外の対応をざっと
+### Range#===
 
 * [Allow Range#=== and Range#cover? on Range](https://github.com/rails/rails/commit/0fcb921a65e615c301450d7820b03473acd53898)
+  * `Range#===`がRange#include?`ではなく`cover?`を使うようになった対応の影響
+* これ5.2にバックポートするの忘れていたので、今リリースされているRails全てで期待通りに動作しないはず
+
+---
+
+### warning出る系
+
 * [Deprecate safe_level of `ERB.new` in Ruby 2.6](https://github.com/rails/rails/pull/32170)
 * [Do not use deprecated Object#!~ in Ruby 2.6](https://github.com/rails/rails/commit/db080527a4b6915b1ae7d9bc678467990ecece61)
 * [Ruby 2.6 will not require monkey patched `URI#unescape`](https://github.com/rails/rails/pull/32319)
 * [2.6 warnings: passing splat keyword arguments as a single Hash](https://github.com/rails/rails/pull/32447)
 
+---
+
+### 結論
+
+RangeとBigDecimal以外はwarning出るだけのはずだけど、気になる人は[[WIP] Ruby 2.6 suport for 5-2-stable branch](https://github.com/rails/rails/pull/34720) がマージされるまではちょっと待って
